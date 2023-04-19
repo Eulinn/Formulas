@@ -1,16 +1,16 @@
 import mysql.connector
 from mysql.connector import errorcode
 import os, sys
-
-
-
+from colorama import just_fix_windows_console
+from termcolor import colored
 
 
 class Main():
     def __init__(self) -> None:
+        just_fix_windows_console()
         connection = self.mysql_connection('localhost', 'root', '','enem')
         if not connection:
-            return print("Não conectou ao banco de dados")
+            return print(colored("Não conectou ao banco de dados",'red'))
 
 
         self.controller(connection)
@@ -55,7 +55,7 @@ class Main():
 
                 if(Opc.lower() not in opcoes):
                     os.system('cls')
-                    print("Escreva uma opção dentro do menu")
+                    print(colored("Escreva uma opção dentro do menu",'red'))
                     continue
                 
                 if(Opc.lower() == 'a'):
@@ -90,7 +90,7 @@ class Main():
             except OSError as error:
                 os.system('cls')
                 print(error)
-                print('Escreva uma opção válida')
+                print(colored('Escreva uma opção válida','red'))
 
 
 
@@ -98,11 +98,11 @@ class Main():
     def EstilizarResultado(self,result):
         os.system('cls')
         if(len(result) == 0):
-            print("Não encontramos resultados com essas palavras chaves")
+            print(colored("Não encontramos resultados com essas palavras chaves",'cyan'))
             return
         for Formula in result:
             print("-"*100)
-            print(f"Formula: {Formula[1]}\n Descrição: {Formula[2]}\n Macete: {Formula[3]}")
+            print(f"Formula: {Formula[1]}\nDescrição: {Formula[2]}\n"+colored(f"Macete: {Formula[3]}",'green'))
             print("-"*100)
         
 
