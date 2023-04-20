@@ -67,7 +67,7 @@ class Main():
                 
                 if(Opc.lower() == 'c'):
                     os.system('cls')
-                    chaves = str(input('Palavras Chaves: ')).replace(' ','').split(",")
+                    chaves = str(input('Palavras Chaves: ')).split(" ")
                     query = "SELECT * FROM formulas WHERE"
 
                     cont = 0
@@ -79,7 +79,6 @@ class Main():
 
                         cont+=1
                 
-
 
                     cursor.execute(query)
                     result = cursor.fetchall()
